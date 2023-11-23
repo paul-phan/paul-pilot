@@ -32,7 +32,7 @@ export default async function handleRequest(
   if (isbot(request.headers.get('user-agent'))) {
     await body.allReady;
   }
-
+  responseHeaders.set('Cache-Control', 's-maxage=10, stale-while-revalidate=600');
   responseHeaders.set('Content-Type', 'text/html');
   responseHeaders.set('Content-Security-Policy', header);
   return new Response(body, {
